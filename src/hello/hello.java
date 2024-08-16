@@ -11,7 +11,7 @@ public class hello {
 	static char [] l = new char[1];
 	static int  mode;
 	static int flag = 1;
-	static int termenate = 0;
+	static int terminate = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -20,13 +20,13 @@ public class hello {
 		System.out.println("Enter 1 for player VS computer");
 		System.out.println("Enter 2 for player VS player");
 		Scanner input = new Scanner(System.in);
-		int typeOfGame = input.nextInt();
+		int typeOfGame = input.nextInt();			//choose between two modes in the game(computer VS player is not available) 
 		mode = typeOfGame;
 		System.out.println("starting game");
 		
 		
 		
-			playGame();
+			playGame();					//initialize game 
 			
 		
 		
@@ -38,24 +38,24 @@ public class hello {
 		if(mode ==2) {
 			
 			if (flag == 1) {
-				playerOne();
+				playerOne();				//function take player 1 move
 				flag = 0;
 			} else {
-				playertwo();
+				playertwo();				//function take player 2 move
 				flag = 1;
 			}
 			
-			printGrid();
-			checkWin1();
-			checkWin2();
-			checkWin3();
+			printGrid();					//print the updated grid after player 1 or 2 play
+			checkWin1();					//check win (row of 4 vertical or horizontal)
+			checkWin2();					//check win (row of 4 in diagonal)
+			checkWin3();					//check win (row of 4 in diagonal)
 			
 		 }else if(mode ==1) {
-	
+			 //will be code for computer VS player
 		 }
 	}
 	
-	public static void printGrid() {
+	public static void printGrid() {			
 		for (int i = 1;i < 8;i++) {
 			System.out.print(" "+i+"  | ");
 		}
@@ -68,7 +68,7 @@ public class hello {
 		}
 	}
 	
-	public static void playerOne() {
+	public static void playerOne() {			
 		Scanner input = new Scanner(System.in);
 		System.out.print("player 1 move:");
 		int playerMove = input.nextInt();
@@ -85,7 +85,7 @@ public class hello {
 		}
 	}
 	
-	public static void playertwo() {
+	public static void playertwo() {			
 		Scanner input = new Scanner(System.in);
 		System.out.print("player 2 move:");
 		int playerMove = input.nextInt();
@@ -110,18 +110,18 @@ public class hello {
 					continue;
 				}else if((grid[i][j] == 'x') && (grid[i][j+1] == 'x') && (grid[i][j+2] == 'x') && (grid[i][j+3] == 'x')){
 					System.out.println("player 1 win");
-					termenate = 1;
+					terminate = 1;
 				}else if((grid[i][j] == 'o') && (grid[i][j+1] == 'o') && (grid[i][j+2] == 'o') && (grid[i][j+3] == 'o')){
 					System.out.println("player 2 win");
-					termenate = 1;
+					terminate = 1;
 				}else if((i+1>5) || (i+2>5) || (i+3>5)) {
 					continue;
 				}else if((grid[i][j] == 'x') && (grid[i+1][j] == 'x') && (grid[i+2][j] == 'x') && (grid[i+3][j] == 'x')){
 					System.out.println("player 1 win");
-					termenate = 1;
+					terminate = 1;
 				}else if((grid[i][j] == 'o') && (grid[i+1][j] == 'o') && (grid[i+2][j] == 'o') && (grid[i+3][j] == 'o')){
 					System.out.println("player 2 win");
-					termenate = 1;
+					terminate = 1;
 				}
 				
 			}
@@ -138,10 +138,10 @@ public class hello {
 					continue;
 				}else if((grid[i][j] == 'o') && (grid[i-1][j+1] == 'o') && (grid[i-2][j+2] == 'o') && (grid[i-3][j+3] == 'o')){
 					System.out.println("player 2 win");
-					termenate = 1;
+					terminate = 1;
 				}else if((grid[i][j] == 'x') && (grid[i-1][j+1] == 'x') && (grid[i-2][j+2] == 'x') && (grid[i-3][j+3] == 'x')){
 					System.out.println("player 1 win");
-					termenate = 1;
+					terminate = 1;
 				}
 			}
 		}
@@ -156,14 +156,14 @@ public class hello {
 					continue;
 				}else if((grid[i][j] == 'o') && (grid[i+1][j+1] == 'o') && (grid[i+2][j+2] == 'o') && (grid[i+3][j+3] == 'o')){
 					System.out.println("player 2 win");
-					termenate = 1;
+					terminate = 1;
 				}else if((grid[i][j] == 'x') && (grid[i+1][j+1] == 'x') && (grid[i+2][j+2] == 'x') && (grid[i+3][j+3] == 'x')){
 					System.out.println("player 1 win");
-					termenate = 1;
+					terminate = 1;
 				}
 			}
 		}
-		if (termenate == 0) {
+		if (terminate == 0) {
 			playGame();
 		}else {System.out.println("end of the game");}
 		
